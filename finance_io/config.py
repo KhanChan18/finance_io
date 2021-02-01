@@ -1,7 +1,7 @@
 import json
 import yaml
 
-CONF_PATH = ".\conf\conf-sample.yml"
+CONF_PATH = "conf/conf-sample.yml"
 
 def loadConfig():
     with open(CONF_PATH, "r") as inFile:

@@ -1,0 +1,8 @@
+---
+globalConfig:
+  dataSource:
+    mod: dev
+    name: wind
+    sdk:
+        name: WindPy
+        path: ''

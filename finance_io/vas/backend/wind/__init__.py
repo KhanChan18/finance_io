@@ -1,11 +1,6 @@
 import os
 import yaml
 
-from .api import setupConn, execute
+from .api import windProxy
 
-
-def loadRuleEng():
-    with open(os.path.abspath(os.path.join("vas", "backend", "wind", "rules", "rules.yml")), 'r') as inFile:
-        res = yaml.load(inFile, Loader=yaml.FullLoader)
-    return res
-
+proxy = windProxy()

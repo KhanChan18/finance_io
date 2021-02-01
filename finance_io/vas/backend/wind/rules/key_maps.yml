@@ -5,3 +5,6 @@ sector_ids:
   sz-main: 'a001010500000000'
   sz-small: '1000009396000000'
   sz-inv: 'a001010r00000000'
+param_keys:
+  date: date
+  sec_name: sector_id

@@ -1,12 +1,11 @@
-from WindPy import w as wdb_conn
+import os
 
-def setupConn():
-    wdb_conn.start()
-    return wdb_conn
-
-def execute(mod=None, func=None, **kwargs):
-    import pdb;pdb.set_trace()
-    pass
+from finance_io.config import CONF
+from finance_io.utils.loadtools import importObj
+from finance_io.utils.io import readYAML
+from finance_io.utils.misc import genPath
+from finance_io.vas.backend import srcProxy
+# from WindPy import w as wdb_conn
 
 def getSector(date=None, sec_name=None):
     SEC_MAP = {}
@@ -18,7 +17,46 @@ def getSector(date=None, sec_name=None):
     )
     res_data = res.Data
     return dict(zip(res_data[1], res_data[2]))
-     
+
+def connInit():
+    windConn = importObj(
+        'wdb_conn',
+        CONF['dataSource']['sdk']['name'],
+        CONF['dataSource']['sdk']['path']
+    )
+    windConn.start()
+    return windConn
+
+def protoLoad():
+    return readYAML(
+        genPath(
+            'rules/rules.yml',
+            os.path.dirname(__file__)
+        )
+    )
+
+def renderTemp(tempName, params):
+    pass
+
+class windProxy(srcProxy):
+    
+    def __init__(self):
+        if CONF['dataSource']['mod'] == "dev":
+            self.conn = None
+        else:
+            self.conn = connInit()
+        self.protocols = protoLoad()
+
+    def _execute(self, sec=None, func=None, **kwargs):
+        pass
+
+    def reqRend(self, **kwargs):
+        import pdb;pdb.set_trace()
+        return {
+            "internal-module": sec,
+            "params": [func]
+        }
+
 
 if __name__ == "__main__":
     #print(w.wsd(

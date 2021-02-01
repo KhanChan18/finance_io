@@ -1,5 +1,0 @@
----
-globalConfig:
-  mod: prd
-  dataSource:
-    name: wind
