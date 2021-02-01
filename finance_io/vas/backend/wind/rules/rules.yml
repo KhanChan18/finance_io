@@ -1,0 +1,9 @@
+---
+getSector:
+  mod: wset
+  func: sectorconstituent
+  params:
+  - sec_name
+  - date
+getIndex:
+  mod: wset
